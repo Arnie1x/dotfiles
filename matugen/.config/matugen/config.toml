@@ -1,0 +1,7 @@
+[config.wallpaper]
+command = "hyprctl"
+arguments = ["hyprpaper", "reload", ","]
+
+[templates.waybar]
+input_path = './templates/template.css'
+output_path = './templates/colors.css'
