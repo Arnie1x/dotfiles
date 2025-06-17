@@ -69,7 +69,7 @@ input {
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
 // Remember to uncomment the node by removing "/-"!
-/-output "eDP-1" {
+output "eDP-1" {
     // Uncomment this line to disable this output.
     // off
 
@@ -82,7 +82,7 @@ input {
     mode "1920x1080@120.030"
 
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
-    scale 2
+    scale 1
 
     // Transform allows to rotate the output counter-clockwise, valid values are:
     // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
@@ -97,7 +97,7 @@ input {
     // so to put another output directly adjacent to it on the right, set its x to 1920.
     // If the position is unset or results in an overlap, the output is instead placed
     // automatically.
-    position x=1280 y=0
+    // position x=1280 y=0
 }
 
 // Settings that influence how windows are positioned and sized.
@@ -344,11 +344,11 @@ window-rule {
 
 window-rule {
     match is-active=false
-    opacity 0.95
+    opacity 0.9
 }
 
 window-rule {
-    match app-id="^Code|Windsurf|gedit$"
+    match app-id="^Code|Windsurf|gedit|sublime_text$"
     opacity 0.95
 }
 
@@ -364,7 +364,7 @@ window-rule {
 
 //  Overview Settings
 overview {
-    zoom 0.5
+    zoom 0.35
     workspace-shadow {
         off
     }
@@ -376,6 +376,7 @@ layer-rule {
 
 
 binds {
+    Mod+X { spawn "bash" "-c" "~/.config/hypr/hyprlock.sh"; }
     // Keys consist of modifiers separated by + signs, followed by an XKB key name
     // in the end. To find an XKB name for a particular key, you may use a program
     // like wev.

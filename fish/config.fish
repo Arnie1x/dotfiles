@@ -8,6 +8,14 @@ set fish_greeting
 set VIRTUAL_ENV_DISABLE_PROMPT "1"
 set -x SHELL /usr/bin/fish
 
+# Use bat for man pages
+set -xU MANPAGER "sh -c 'col -bx | bat -l man -p'"
+set -xU MANROFFOPT "-c"
+
+## Export variable need for qt-theme
+if type "qtile" >> /dev/null 2>&1
+   set -x QT_QPA_PLATFORMTHEME "qt5ct"
+end
 
 # Pyenv Init
 eval "$(pyenv init --path)"
@@ -63,3 +71,6 @@ alias mirror 'sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacma
 alias mirrora 'sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist'
 alias mirrord 'sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist'
 alias mirrors 'sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist'
+
+# fastfetch
+alias ff 'fastfetch'
