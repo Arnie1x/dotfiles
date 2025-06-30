@@ -8,12 +8,15 @@ Please note that these dotfiles are a work in progress—I'm constantly experime
 
 ## Tools I'm Currently Using
 
-- Fish
-- Fuzzel
-- Kitty
-- Niri
-- Swww
-- Waybar
+- Fish (Shell)
+- Kitty (Terminal Emulator)
+- Fuzzel (App launcher and fuzzy finder)
+- Niri (Window Manager)
+- Swww (Wallpaper Manager)
+- Waybar (Status Bar)
+- Superfile (File Manager)
+- Hyprlock (Screen Locker)
+- Auto CpuFreq (CPU Frequency Scaling)
 
 ---
 

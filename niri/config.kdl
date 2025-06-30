@@ -79,7 +79,7 @@ output "eDP-1" {
     // for the resolution.
     // If the mode is omitted altogether or is invalid, niri will pick one automatically.
     // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
-    mode "1920x1080@120.030"
+    // mode "1920x1080@120.030"
 
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
     scale 1
@@ -291,7 +291,7 @@ animations {
     // off
 
     // Slow down all animations by this factor. Values below 1 speed them up instead.
-    slowdown 0.9
+    slowdown 0.8
 }
 
 // Window rules let you adjust behavior for individual windows.
@@ -348,7 +348,7 @@ window-rule {
 }
 
 window-rule {
-    match app-id="^Code|Windsurf|gedit|sublime_text$"
+    match app-id="^Code|Windsurf|gedit|sublime_text|beekeeper-studio$"
     opacity 0.95
 }
 
@@ -362,9 +362,19 @@ window-rule {
     opacity 0.7
 }
 
+// Zen PiP
+window-rule {
+    match app-id=r#"zen$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+window-rule {
+    match app-id=r#"zen$"# title="^Picture-in-Picture$" is-active=false
+    opacity 1.0
+}
+
 //  Overview Settings
 overview {
-    zoom 0.35
+    zoom 0.25
     workspace-shadow {
         off
     }
@@ -377,6 +387,7 @@ layer-rule {
 
 binds {
     Mod+X { spawn "bash" "-c" "~/.config/hypr/hyprlock.sh"; }
+    Mod+B { spawn "bash" "-c" "~/.config/waybar/waybar.sh"; }
     // Keys consist of modifiers separated by + signs, followed by an XKB key name
     // in the end. To find an XKB name for a particular key, you may use a program
     // like wev.
@@ -406,7 +417,7 @@ binds {
     XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
     XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
     XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
-    XF86MonBrightnessUp  allow-when-locked=true { spawn "brightnessctl" "s" "5%+"; }
+    XF86MonBrightnessUp  allow-when-locked=true { spawn "brightnessctl" "s" "+5%"; }
     XF86MonBrightnessDown  allow-when-locked=true { spawn "brightnessctl" "s" "5%-"; }
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
