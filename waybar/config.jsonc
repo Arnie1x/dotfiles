@@ -15,7 +15,7 @@
     // "backlight",
     // "sway/language",
     "network",
-    "bluetooth",
+    // "bluetooth",
     "tray"
   ],
 

@@ -27,8 +27,8 @@ if test -d ~/.local/bin
     end
 end
 
-## Advanced command-not-found hook
-source /usr/share/doc/find-the-command/ftc.fish askfirst
+## Advanced command-not-found hook (Disabled in favor of using the `fuck` package)
+# source /usr/share/doc/find-the-command/ftc.fish askfirst
 
 # Aliases
 
@@ -74,3 +74,14 @@ alias mirrors 'sudo reflector --latest 50 --number 20 --sort score --save /etc/p
 
 # fastfetch
 alias ff 'fastfetch'
+
+# pnpm
+alias pn pnpm
+# pnpm
+set -gx PNPM_HOME "/home/arnie/.local/share/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
+end
+# pnpm end
+
+thefuck --alias | source
