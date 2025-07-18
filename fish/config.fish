@@ -75,6 +75,11 @@ alias mirrors 'sudo reflector --latest 50 --number 20 --sort score --save /etc/p
 # fastfetch
 alias ff 'fastfetch'
 
+# Brightnessctl aliases
+alias b 'brightnessctl'
+alias bup 'brightnessctl set +10%'
+alias bdown 'brightnessctl set 10%-'
+
 # pnpm
 alias pn pnpm
 # pnpm
@@ -85,3 +90,13 @@ end
 # pnpm end
 
 thefuck --alias | source
+
+# Android Tools
+set -gx ANDROID_HOME "/home/arnie/Android/Sdk"
+set -gx JAVA_HOME "/usr/lib/jvm/java-21-openjdk"
+set -gx PATH $PATH /home/arnie/Android/Sdk/platform-tools/
+
+# Flutter
+set -gx FLUTTER_HOME "/opt/flutter"
+set -gx PATH $PATH $FLUTTER_HOME/bin
+set -gx CHROME_EXECUTABLE "/usr/bin/google-chrome-stable"

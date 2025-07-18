@@ -16,6 +16,7 @@ Please note that these dotfiles are a work in progress—I'm constantly experime
 - Waybar (Status Bar)
 - Superfile (File Manager)
 - Hyprlock (Screen Locker)
+- Hyprpicker (Color Picker Tool)
 - Auto CpuFreq (CPU Frequency Scaling)
 
 ---
