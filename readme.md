@@ -31,3 +31,7 @@ Feel free to explore, reference, or adapt any part of this setup for your own us
 ![Screenshot 1](assets/screenshots/1.png)
 
 ![Screenshot 2](assets/screenshots/2.png)
+
+![Screenshot 3](assets/screenshots/3.png)
+
+![Screenshot 4](assets/screenshots/4.png)
