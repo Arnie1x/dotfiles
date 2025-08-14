@@ -28,6 +28,6 @@ Feel free to explore, reference, or adapt any part of this setup for your own us
 ---
 ## Screenshots
 
-![Screenshot](https://raw.githubusercontent.com/Arnie1x/dotfiles/refs/heads/main/assets/images/1.png)
+![Screenshot 1](assets/screenshots/1.png)
 
-![Screenshot](https://raw.githubusercontent.com/Arnie1x/dotfiles/refs/heads/main/assets/images/2.png)
+![Screenshot 2](assets/screenshots/2.png)
