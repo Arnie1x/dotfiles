@@ -100,3 +100,6 @@ set -gx PATH $PATH /home/arnie/Android/Sdk/platform-tools/
 set -gx FLUTTER_HOME "/opt/flutter"
 set -gx PATH $PATH $FLUTTER_HOME/bin
 set -gx CHROME_EXECUTABLE "/usr/bin/google-chrome-stable"
+
+# SWWW
+set -gx SWWW_TRANSITION_BEZIER ".54,0,.12,.98"

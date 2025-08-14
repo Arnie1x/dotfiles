@@ -205,7 +205,7 @@ layout {
     // You can enable drop shadows for windows.
     shadow {
         // Uncomment the next line to enable shadows.
-        on
+        // on
 
         // By default, the shadow draws only around its window, and not behind it.
         // Uncomment this setting to make the shadow draw behind its window.
@@ -348,7 +348,7 @@ window-rule {
 }
 
 window-rule {
-    match app-id="^Code|Windsurf|gedit|sublime_text|beekeeper-studio|vesktop$"
+    match app-id="^Code|Windsurf|gedit|sublime_text|beekeeper-studio|vesktop|obsidian$"
     opacity 0.95
 }
 
@@ -359,10 +359,10 @@ window-rule {
 
 window-rule {
     match app-id="kitty" is-active=false
-    opacity 0.6
+    opacity 0.5
 }
 
-// Zen PiP
+// Zen Browser
 window-rule {
     match app-id=r#"zen$"# title="^Picture-in-Picture$"
     open-floating true
@@ -370,6 +370,10 @@ window-rule {
 window-rule {
     match app-id=r#"zen$"# title="^Picture-in-Picture$" is-active=false
     opacity 1.0
+}
+window-rule {
+    match app-id=r#"zen$"# title="^Extension:$"
+    open-floating true
 }
 
 //  Overview Settings
