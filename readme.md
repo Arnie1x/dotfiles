@@ -19,7 +19,7 @@ Please note that these dotfiles are a work in progress—I'm constantly experime
 - Hyprpicker (Color Picker Tool)
 - Auto CpuFreq (CPU Frequency Scaling)
 - Tmux (Terminal Multiplexer)
-    - Tmux Configuration taken from [this repository](https://github.com/gpakosz/.tmux?tab=readme-ov-file#configuration)
+    - Tmux Configuration referenced from [this repository](https://github.com/gpakosz/.tmux)
 
 ---
 
