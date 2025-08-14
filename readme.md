@@ -24,3 +24,10 @@ Please note that these dotfiles are a work in progress—I'm constantly experime
 ---
 
 Feel free to explore, reference, or adapt any part of this setup for your own use!
+
+---
+## Screenshots
+
+![Screenshot](https://raw.githubusercontent.com/Arnie1x/dotfiles/refs/heads/main/assets/images/1.png)
+
+![Screenshot](https://raw.githubusercontent.com/Arnie1x/dotfiles/refs/heads/main/assets/images/2.png)
