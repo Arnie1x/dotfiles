@@ -49,6 +49,9 @@ swaync-client --reload-css
 # -------- Kitty.conf colors --------
 cat ~/.cache/wal/colors-kitty.conf > ~/.config/kitty/current-theme.conf
 
+# -------- Niri colors --------
+source "$HOME/.config/niri/color.sh"
+
 # -------- Restart Waybar --------
 killall waybar
 waybar &
