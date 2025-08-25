@@ -103,3 +103,11 @@ set -gx CHROME_EXECUTABLE "/usr/bin/google-chrome-stable"
 
 # SWWW
 set -gx SWWW_TRANSITION_BEZIER ".54,0,.12,.98"
+
+# clock-rs
+alias clock 'clock-rs'
+
+# PyWal
+cat ~/.cache/wal/sequences
+clear
+# source ~/.cache/wal/colors-tty.sh

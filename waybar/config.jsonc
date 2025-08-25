@@ -1,104 +1,136 @@
 {
   "layer": "top",
   "position": "top",
-  //   "height": 24,
-  "spacing": 5,
-  "margin-right": 8,
-  "margin-left": 8,
-  "margin-top": 8,
-
-  "modules-left": ["niri/workspaces", "memory", "temperature"],
-  "modules-center": ["clock"],
-  "modules-right": [
-    "wireplumber",
-    "battery",
-    // "backlight",
-    // "sway/language",
-    "network",
-    // "bluetooth",
-    "tray"
-  ],
+  "reload_style_on_change": true,
+  "modules-left": ["clock", "tray"],
+  "modules-center": ["niri/workspaces"],
+  "modules-right": ["group/expand", "bluetooth", "network", "wireplumber", "battery", "custom/notification"],
 
   "niri/workspaces": {
-    "format": "<span size='larger'>{icon}</span>",
-    "on-click": "activate",
+    "format": "{icon}",
     "format-icons": {
-      "active": "\uf444",
-      "default": "\uf4c3"
+      "active": "",
+      "default": "",
+      "empty": ""
     },
-    "icon-size": 10,
-    "sort-by-number": true,
     "persistent-workspaces": {
-      "1": [],
-      "2": [],
-      "3": [],
-      "4": [],
-      "5": []
+      "*": [1, 2, 3, 4, 5]
     }
   },
-
-  "clock": {
-    "format": "{:%d.%m.%Y | %H:%M}"
+  "custom/notification": {
+    "tooltip": false,
+    "format": "",
+    "on-click": "swaync-client -t -sw",
+    "escape": true
   },
-
+  "clock": {
+    "format": "{:%H:%M} ",
+    "interval": 1,
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "calendar": {
+      "format": {
+        "today": "<span color='#fAfBfC'><b>{}</b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "shift_down",
+      "on-click": "shift_up"
+    }
+  },
+  "network": {
+    "format-wifi": "",
+    "format-ethernet": "",
+    "format-disconnected": "",
+    "tooltip-format-disconnected": "Error",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+    "tooltip-format-ethernet": "{ifname} 🖧 ",
+    "on-click": "kitty nmtui"
+  },
+  "bluetooth": {
+    "format-on": "󰂯",
+    "format-off": "BT-off",
+    "format-disabled": "󰂲",
+    "format-connected-battery": "{device_battery_percentage}% 󰂯",
+    "format-alt": "{device_alias} 󰂯",
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\n{device_address}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\n{device_address}\n{device_battery_percentage}%",
+    "on-click-right": "blueman-manager"
+  },
   "wireplumber": {
-    "format": "\udb81\udd7e  {volume}%",
+    "format": "\udb81\udd7e {volume}%",
     "max-volume": 100,
     "scroll-step": 5
   },
-
   "battery": {
-    "bat": "BAT0",
-    "interval": 60,
-    "format": "{icon}  {capacity}%",
-    "format-icons": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"]
-  },
-
-  "backlight": {
-    "format": "\udb80\udcdf  {percent}%"
-  },
-
-  "memory": {
     "interval": 30,
-    "format": "\uf4bc  {used:0.1f}G"
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 20
+    },
+    "format": "{capacity}% {icon}",
+    "format-charging": "{capacity}% 󰂄",
+    "format-plugged": "{capacity}% 󰂄 ",
+    "format-alt": "{time} {icon}",
+    "format-icons": ["󰁻", "󰁼", "󰁾", "󰂀", "󰂂", "󰁹"]
   },
-
+  "custom/pacman": {
+    "format": "󰅢 {}",
+    "interval": 30,
+    "exec": "checkupdates | wc -l",
+    "exec-if": "exit 0",
+    "on-click": "kitty sh -c 'yay -Syu; echo Done - Press enter to exit; read'; pkill -SIGRTMIN+8 waybar",
+    "signal": 8,
+    "tooltip": false
+  },
+  "custom/expand": {
+    "format": "",
+    "tooltip": false
+  },
+  "custom/endpoint": {
+    "format": "|",
+    "tooltip": false
+  },
+  "group/expand": {
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 600,
+      "transition-to-left": true,
+      "click-to-reveal": true
+    },
+    "modules": [
+      "custom/expand",
+      "custom/colorpicker",
+      "cpu",
+      "memory",
+      "temperature",
+      "custom/pacman",
+      "custom/endpoint"
+    ]
+  },
+  "custom/colorpicker": {
+    "format": "{}",
+    "return-type": "json",
+    "interval": "once",
+    "exec": "~/.config/waybar/scripts/colorpicker.sh -j",
+    "on-click": "~/.config/waybar/scripts/colorpicker.sh",
+    "signal": 1
+  },
+  "cpu": {
+    "format": "󰻠",
+    "tooltip": true
+  },
+  "memory": {
+    "format": ""
+  },
   "temperature": {
-    "format": "  {temperatureC}°C"
+    "critical-threshold": 80,
+    "format": ""
   },
-
-  "network": {
-    "format": "",
-    "format-ethernet": "\udb83\udc9d",
-    "format-wifi": "{icon}",
-    "format-disconnected": "\udb83\udc9c",
-    "format-icons": [
-      "\udb82\udd2f",
-      "\udb82\udd1f",
-      "\udb82\udd22",
-      "\udb82\udd25",
-      "\udb82\udd28"
-    ],
-    "tooltip-format-wifi": "{essid} ({signalStrength}%)",
-    "tooltip-format-ethernet": "{ifname}",
-    "tooltip-format-disconnected": "Disconnected"
-  },
-
-  "bluetooth": {
-    "format": "\udb80\udcaf",
-    "format-disabled": "\udb80\udcb2",
-    "format-connected": "\udb80\udcb1",
-    "tooltip-format": "{controller_alias}\t{controller_address}",
-    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
-    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
-  },
-
-  "sway/language": {
-    "format": "{short}"
-  },
-
   "tray": {
-    "icon-size": 16,
-    "spacing": 16
+    "icon-size": 14,
+    "spacing": 10
   }
 }

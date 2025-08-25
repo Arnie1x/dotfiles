@@ -262,6 +262,7 @@ spawn-at-startup "waybar"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "swaync"
 spawn-at-startup "bash" "-c" "~/.config/swww/wallpaper-randomizer.sh"
+spawn-at-startup "wal" "-R"
 
 // To make XWayland Work without needing to pass the env on every application
 environment {
@@ -354,12 +355,13 @@ window-rule {
 
 window-rule {
     match app-id="kitty" is-active=true
-    opacity 0.7
+    // Kitty controls the opacity itself
+    opacity 1.0
 }
 
 window-rule {
     match app-id="kitty" is-active=false
-    opacity 0.5
+    opacity 0.6
 }
 
 // Zen Browser
@@ -390,7 +392,7 @@ layer-rule {
 
 
 binds {
-    Mod+X { spawn "bash" "-c" "~/.config/hypr/hyprlock.sh"; }
+    Mod+X { spawn "wlogout" "-b" "2"; }
     Mod+B { spawn "bash" "-c" "~/.config/waybar/waybar.sh"; }
     // Keys consist of modifiers separated by + signs, followed by an XKB key name
     // in the end. To find an XKB name for a particular key, you may use a program
@@ -424,8 +426,8 @@ binds {
     XF86MonBrightnessUp  allow-when-locked=true { spawn "brightnessctl" "s" "+5%"; }
     XF86MonBrightnessDown  allow-when-locked=true { spawn "brightnessctl" "s" "5%-"; }
 
-    // HyprPicker
-    Mod+Shift+C { spawn "bash" "-c" "hyprpicker | wl-copy"; }
+    // Color Picker
+    Mod+Shift+C { spawn "bash" "-c" "~/.config/waybar/scripts/colorpicker.sh"; }
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     // You can also move the mouse into the top-left hot corner,

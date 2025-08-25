@@ -8,8 +8,7 @@ fi
 
 CACHE_FILE="$HOME/.cache/current_swww_wallpaper"
 
-# WALLPAPER_DIR="$HOME/Pictures/Wallpapers"
-WALLPAPER_DIR="$HOME/Pictures/GIFs"  # Change this to your wallpaper directory
+WALLPAPER_DIR="$HOME/Pictures/Wallpapers/"  # Change this to your wallpaper directory
 PIXEL_ART_PATTERN="pixel-art"  # Change this to match your pixel art naming convention
 
 # Load the last-used wallpaper (basename), if any
@@ -28,12 +27,35 @@ else
     FILTER="Mitchell"
 fi
 
+# -------- PyWal Color Scheme Config --------
+
+# If the wallpaper is a GIF, convert it to a JPG and use the JPG for wal
+if [[ "$WALLPAPER" == *.gif ]] || file "$WALLPAPER" | grep -qi 'GIF image'; then
+    TMP_JPG="/tmp/swww_wallpaper_tmp.jpg"
+    if [[ -f "$TMP_JPG" ]]; then
+        rm "$TMP_JPG"
+    fi
+    convert "$WALLPAPER[0]" "$TMP_JPG"
+    WAL_INPUT="$TMP_JPG"
+else
+    WAL_INPUT="$WALLPAPER"
+fi
+wal -c
+wal -n -i "$WAL_INPUT"
+
+# -------- SwayNC Client --------
+swaync-client --reload-css
+
+# -------- Kitty.conf colors --------
+cat ~/.cache/wal/colors-kitty.conf > ~/.config/kitty/current-theme.conf
+
+# -------- Restart Waybar --------
+killall waybar
+waybar &
+
 # Apply with a smooth zoom transition (adjust duration/type as you like)
 swww img "$WALLPAPER" --transition-type grow --transition-duration 1 --transition-fps 60 --filter "$FILTER"
 
 # Notify and save for next time
 notify-send "Wallpaper Changed" "$(basename "$WALLPAPER")"
 echo "$WALLPAPER" > "$CACHE_FILE"
-
-# Your existing post-processing
-# matugen image "$WALLPAPER"

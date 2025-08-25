@@ -1,43 +1,221 @@
-@define-color foreground #eeeeee;
-@define-color foreground-inactive #aaaaaa;
-@define-color background rgba(0, 0, 0, 0.6);
+@import url('../../.cache/wal/colors-waybar.css');
 
 * {
-    font-family: JetBrainsMono Nerd Font;
     font-size: 12px;
-    border-radius: 8px;
-    padding: 0;
-    margin: 0;
+    font-family: "CodeNewRoman Nerd Font Propo";
 }
 
 window#waybar {
-    transition-property: background-color;
-    transition-duration: .5s;
-    background-color: @background;
-    color: @foreground;
+    all: unset;
+}
+
+.modules-left {
+    padding: 7px;
+    margin: 5 0 0 7;
+    border-radius: 10px;
+    background: alpha(@background, .8);
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, .1);
+}
+
+.modules-center {
+    padding: 7px;
+    margin: 5 0 0 0;
+    border-radius: 10px;
+    background: alpha(@background, .6);
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, .1);
+}
+
+.modules-right {
+    padding: 7px;
+    margin: 5 7 0 0;
+    border-radius: 10px;
+    background: alpha(@background, .8);
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, .1);
+}
+
+tooltip {
+    background: @background;
+    color: @color7;
+}
+
+#clock:hover,
+#custom-pacman:hover,
+#custom-notification:hover,
+#bluetooth:hover,
+#network:hover,
+#battery:hover,
+#wireplumber:hover,
+#cpu:hover,
+#memory:hover,
+#temperature:hover {
+    transition: all .3s ease;
+    color: @color9;
+}
+
+#custom-notification {
+    padding: 0px 10px 0px 15px;
+    transition: all .3s ease;
+    color: @color7;
+    border-left: 2px solid @color9;
+}
+
+#clock {
+    padding: 0px 5px;
+    color: @color7;
+    transition: all .3s ease;
+}
+
+#custom-pacman {
+    padding: 0px 5px;
+    transition: all .3s ease;
+    color: @color7;
+
+}
+
+#workspaces {
+    padding: 0px 5px;
+    margin: 0 5px;
 }
 
 #workspaces button {
-    color: @foreground;
-    padding-left: 0.3em;
-    padding-right: 0.5em;
+    all: unset;
+    padding: 0px 6px;
+    color: alpha(@color9, .4);
+    transition: all .2s ease;
+}
+
+#workspaces button:hover {
+    color: rgba(0, 0, 0, 0);
+    border: none;
+    text-shadow: 0px 0px 1.5px rgba(0, 0, 0, .5);
+    transition: all 1s ease;
+}
+
+#workspaces button.active {
+    border: none;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, .5);
+    background: alpha(@color9, 1);
+    border-radius: 50px;
+    padding: 0 20px;
 }
 
 #workspaces button.empty {
-    color: @foreground-inactive;
+    color: rgba(0, 0, 0, 0);
+    border: none;
+    text-shadow: 0px 0px 1.5px rgba(0, 0, 0, .2);
 }
 
+#workspaces button.empty:hover {
+    color: rgba(0, 0, 0, 0);
+    border: none;
+    text-shadow: 0px 0px 1.5px rgba(0, 0, 0, .5);
+    transition: all 1s ease;
+}
+
+#workspaces button.empty.active {
+    color: alpha(@color9, 1);
+    border: none;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, .5);
+    background: alpha(@color9, 1);
+    border-radius: 50px;
+    padding: 0 15px;
+}
+
+#bluetooth {
+    padding: 0px 7px;
+    transition: all .3s ease;
+    color: @color7;
+
+}
+
+#network {
+    padding: 0px 7px;
+    transition: all .3s ease;
+    color: @color7;
+
+}
+
+#battery {
+    padding: 0px 15px 0px 7px;
+    transition: all .3s ease;
+    color: @color7;
+
+
+}
+
+#wireplumber {
+    padding: 0px 7px;
+    transition: all .3s ease;
+    color: @color7;
+
+
+}
+
+#battery.charging {
+    color: #26A65B;
+}
+
+#battery.warning:not(.charging) {
+    color: #ffbe61;
+}
+
+#battery.critical:not(.charging) {
+    color: #f53c3c;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#group-expand {
+    padding: 0px 5px;
+    transition: all .3s ease;
+}
+
+#custom-expand {
+    padding: 0px 5px;
+    color: alpha(@foreground, .2);
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, .7);
+    transition: all .3s ease;
+}
+
+#custom-expand:hover {
+    color: rgba(255, 255, 255, .2);
+    text-shadow: 0px 0px 2px rgba(255, 255, 255, .5);
+}
+
+#custom-colorpicker {
+    padding: 0px 5px;
+}
+
+#cpu,
 #memory,
 #temperature {
-    padding-left: 1em
+    padding: 0px 5px;
+    transition: all .3s ease;
+    color: @color7;
+
 }
 
-#wireplumber,
-#battery,
-#backlight,
-#language,
-#network,
-#bluetooth,
+#custom-endpoint {
+    color: transparent;
+    text-shadow: 0px 0px 1.5px rgba(0, 0, 0, 1);
+
+}
+
 #tray {
-    padding-right: 1em
+    padding: 0px 5px;
+    transition: all .3s ease;
+
+}
+
+#tray menu * {
+    padding: 0px 5px;
+    transition: all .3s ease;
+}
+
+#tray menu separator {
+    padding: 0px 5px;
+    transition: all .3s ease;
 }

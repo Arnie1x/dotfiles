@@ -21,6 +21,10 @@ Please note that these dotfiles are a work in progress—I'm constantly experime
 - Tmux (Terminal Multiplexer)
     - Tmux Configuration referenced from [this repository](https://github.com/gpakosz/.tmux)
 
+- Wlogout (Logout Menu)
+- Pywal (Dynamic theming based on wallpaper)
+- Swaync (Notification Center)
+
 ---
 
 Feel free to explore, reference, or adapt any part of this setup for your own use!
@@ -28,10 +32,13 @@ Feel free to explore, reference, or adapt any part of this setup for your own us
 ---
 ## Screenshots
 
-![Screenshot 1](assets/screenshots/1.png)
+![Screenshot 3](assets/screenshots/3.png)
 
 ![Screenshot 2](assets/screenshots/2.png)
 
-![Screenshot 3](assets/screenshots/3.png)
+![Screenshot 1](assets/screenshots/1.png)
+
+![Screenshot 5](assets/screenshots/5.png)
 
 ![Screenshot 4](assets/screenshots/4.png)
+
