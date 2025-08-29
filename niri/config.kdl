@@ -132,7 +132,11 @@ layout {
     }
 
     // You can also customize the heights that "switch-preset-window-height" (Mod+Shift+R) toggles between.
-    // preset-window-heights { }
+    preset-window-heights {
+        proportion 0.25
+        proportion 0.5
+        proportion 0.75
+     }
 
     // You can change the default width of the new windows.
     default-column-width { proportion 0.5; }
@@ -176,7 +180,7 @@ layout {
         // You can use any CSS linear-gradient tool on the web to set these up.
         // Changing the color space is also supported, check the wiki for more info.
         //
-active-gradient from="#f3e8c0" to="#5B85D2" angle=45 relative-to="workspace-view"
+active-gradient from="#f6d79b" to="#FF8D3D" angle=45 relative-to="workspace-view"
 
         // You can also color the gradient relative to the entire view
         // of the workspace, rather than relative to just the window itself.
@@ -351,6 +355,7 @@ window-rule {
 window-rule {
     match app-id="^Code|Windsurf|gedit|sublime_text|beekeeper-studio|vesktop|obsidian$"
     opacity 0.95
+    open-maximized true
 }
 
 window-rule {
@@ -364,17 +369,37 @@ window-rule {
     opacity 0.6
 }
 
-// Zen Browser
+// Zen Browser & Firefox
 window-rule {
-    match app-id=r#"zen$"# title="^Picture-in-Picture$"
-    open-floating true
+    match app-id="^zen$"
+    open-maximized true
+    shadow {
+        // Shadows to make text more legible with Transparent Zen extensions (alternative for blur in Hyprland)
+        on
+        draw-behind-window true
+        softness 30
+
+        // Spread expands the shadow.
+        spread 5
+
+        // Offset moves the shadow relative to the window.
+        offset x=2 y=2
+
+        // You can also change the shadow color and opacity.
+        color "#00000070"
+    }
 }
 window-rule {
-    match app-id=r#"zen$"# title="^Picture-in-Picture$" is-active=false
+    match app-id="^zen|firefox$" title="^Picture-in-Picture$"
+    open-floating true
+    default-floating-position x=8 y=8 relative-to="bottom-right"
+}
+window-rule {
+    match app-id="^zen|firefox$" title="^Picture-in-Picture$" is-active=false
     opacity 1.0
 }
 window-rule {
-    match app-id=r#"zen$"# title="^Extension:$"
+    match app-id="^zen|firefox$" title="^Extension:$"
     open-floating true
 }
 
