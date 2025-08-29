@@ -198,9 +198,8 @@ tooltip {
 }
 
 #custom-endpoint {
-    color: transparent;
+    color: @color9;
     text-shadow: 0px 0px 1.5px rgba(0, 0, 0, 1);
-
 }
 
 #tray {
