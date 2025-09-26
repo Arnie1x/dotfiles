@@ -93,7 +93,7 @@ thefuck --alias | source
 
 # Android Tools
 set -gx ANDROID_HOME "/home/arnie/Android/Sdk"
-set -gx JAVA_HOME "/usr/lib/jvm/java-21-openjdk"
+set -gx JAVA_HOME "/usr/lib/jvm/java-17-openjdk"
 set -gx PATH $PATH /home/arnie/Android/Sdk/platform-tools/
 
 # Flutter
@@ -106,6 +106,9 @@ set -gx SWWW_TRANSITION_BEZIER ".54,0,.12,.98"
 
 # clock-rs
 alias clock 'clock-rs'
+
+# niri share screen
+alias share-screen 'niri msg action set-dynamic-cast-monitor'
 
 # PyWal
 cat ~/.cache/wal/sequences
