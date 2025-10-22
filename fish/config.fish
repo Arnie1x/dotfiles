@@ -2,6 +2,12 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
     # Starship Init
     starship init fish | source
+
+    # Pyenv Init
+    pyenv init - fish | source
+
+    # fuck
+    thefuck --alias | source
 end
 
 set fish_greeting
@@ -16,9 +22,6 @@ set -xU MANROFFOPT "-c"
 if type "qtile" >> /dev/null 2>&1
    set -x QT_QPA_PLATFORMTHEME "qt5ct"
 end
-
-# Pyenv Init
-eval "$(pyenv init --path)"
 
 # Add ~/.local/bin to PATH
 if test -d ~/.local/bin
@@ -40,7 +43,7 @@ alias lt 'eza -aT --color=always --group-directories-first --icons' # tree listi
 alias l. 'eza -ald --color=always --total-size --group-directories-first --icons .*' # show only dotfiles
 
 # Replace cat with bat
-alias cat 'bat --theme="TwoDark" --style="full" --decorations=always --color=always'
+alias cat 'bat --style="plain" --decorations=always --color=always'
 
 # Common use
 alias .. 'cd ..'
@@ -88,8 +91,6 @@ if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
 # pnpm end
-
-thefuck --alias | source
 
 # Android Tools
 set -gx ANDROID_HOME "/home/arnie/Android/Sdk"

@@ -97,14 +97,24 @@ output "eDP-1" {
     // so to put another output directly adjacent to it on the right, set its x to 1920.
     // If the position is unset or results in an overlap, the output is instead placed
     // automatically.
-    // position x=1280 y=0
+    position x=0 y=0
 }
 
 output "HP Inc. HP M27f FHD 3CM32205NZ" {
-    mode "1920x1080@60"
+    mode "1920x1080@74.973"
     scale 1
-    position x=1366 y=-500
+    position x=-1920 y=-600
+}
 
+output "HP Inc. HP M27f FHD 3CM32206RY" {
+    mode "1920x1080@74.973"
+    scale 1
+    position x=1366 y=-600
+}
+
+output "Samsung Electric Company SAMSUNG 0x01000E00" {
+    // ...settings for HDMI-A-1...
+    scale 2
 }
 
 // Settings that influence how windows are positioned and sized.
@@ -192,7 +202,7 @@ layout {
         // You can use any CSS linear-gradient tool on the web to set these up.
         // Changing the color space is also supported, check the wiki for more info.
         //
-active-gradient from="#cad5cb" to="#95AC99" angle=45 relative-to="workspace-view"
+active-gradient from="#85aebe" to="#BD5622" angle=45 relative-to="workspace-view"
 
         // You can also color the gradient relative to the entire view
         // of the workspace, rather than relative to just the window itself.
@@ -283,6 +293,7 @@ spawn-at-startup "wal" "-R"
 // To make XWayland Work without needing to pass the env on every application
 environment {
     DISPLAY ":0"
+    ELECTRON_OZONE_PLATFORM_HINT "wayland"
 }
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
@@ -365,7 +376,7 @@ window-rule {
 }
 
 window-rule {
-    match app-id="^Code|Windsurf|gedit|sublime_text|beekeeper-studio|vesktop|obsidian$"
+    match app-id="^code|Windsurf|gedit|sublime_text|beekeeper-studio|vesktop|obsidian|thunar|io.github.alainm23.planify$"
     opacity 0.95
     open-maximized true
 }
@@ -414,6 +425,12 @@ window-rule {
     match app-id="^zen|firefox$" title="^Extension:|Developer$"
     open-floating true
     open-maximized false
+}
+
+// wl-mirror
+window-rule {
+    match app-id="^at.yrlf.wl_mirror"
+    opacity 1.0
 }
 
 //  Overview Settings
