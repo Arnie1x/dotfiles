@@ -69,6 +69,13 @@ input {
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
 // Remember to uncomment the node by removing "/-"!
+output "DP-1" {
+    mode "1920x1080@60"
+    scale 1
+    position x=0 y=0
+
+}
+
 output "eDP-1" {
     // Uncomment this line to disable this output.
     // off
@@ -79,7 +86,7 @@ output "eDP-1" {
     // for the resolution.
     // If the mode is omitted altogether or is invalid, niri will pick one automatically.
     // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
-    mode "1366x768@60.005"
+    // mode "1366x768@60.005"
 
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
     scale 1
@@ -111,7 +118,6 @@ output "HP Inc. HP M27f FHD 3CM32206RY" {
     scale 1
     position x=1366 y=-600
 }
-
 output "Samsung Electric Company SAMSUNG 0x01000E00" {
     // ...settings for HDMI-A-1...
     scale 2
@@ -202,7 +208,7 @@ layout {
         // You can use any CSS linear-gradient tool on the web to set these up.
         // Changing the color space is also supported, check the wiki for more info.
         //
-active-gradient from="#85aebe" to="#BD5622" angle=45 relative-to="workspace-view"
+active-gradient from="#c7ebf4" to="#3DBBE9" angle=45 relative-to="workspace-view"
 
         // You can also color the gradient relative to the entire view
         // of the workspace, rather than relative to just the window itself.
@@ -292,7 +298,13 @@ spawn-at-startup "wal" "-R"
 
 // To make XWayland Work without needing to pass the env on every application
 environment {
-    DISPLAY ":0"
+    XDG_CURRENT_DESKTOP "niri"
+    DISPLAY ":2"
+    ELECTRON_OZONE_PLATFORM_HINT "wayland"
+    XDG_SESISON_TYPE "wayland"
+    QT_QPA_PLATFORM "wayland"
+    MOZ_ENAGLE_WAYLAND "1"
+    QT_WAYLAND_DISABLE_DECORATION "1"
     ELECTRON_OZONE_PLATFORM_HINT "wayland"
 }
 
@@ -376,7 +388,7 @@ window-rule {
 }
 
 window-rule {
-    match app-id="^code|Windsurf|gedit|sublime_text|beekeeper-studio|vesktop|obsidian|thunar|io.github.alainm23.planify$"
+    match app-id="^code|code|Windsurf|gedit|sublime_text|beekeeper-studio|vesktop|obsidian|Spotify|thunar|io.github.alainm23.planify$"
     opacity 0.95
     open-maximized true
 }

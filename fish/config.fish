@@ -70,10 +70,10 @@ alias vdir 'vdir --color=auto'
 alias wget 'wget -c '
 
 # Get fastest mirrors
-alias mirror 'sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist'
-alias mirrora 'sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist'
-alias mirrord 'sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist'
-alias mirrors 'sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist'
+alias mirror 'sudo reflector -f 30 -l 30 --number 10 --protocol https --verbose --save /etc/pacman.d/mirrorlist'
+alias mirrora 'sudo reflector --latest 50 --number 20 --protocol https --sort age --save /etc/pacman.d/mirrorlist'
+alias mirrord 'sudo reflector --latest 50 --number 20 --protocol https --sort delay --save /etc/pacman.d/mirrorlist'
+alias mirrors 'sudo reflector --latest 50 --number 20 --protocol https --sort score --save /etc/pacman.d/mirrorlist'
 
 # fastfetch
 alias ff 'fastfetch'
@@ -85,7 +85,6 @@ alias bdown 'brightnessctl set 10%-'
 
 # pnpm
 alias pn pnpm
-# pnpm
 set -gx PNPM_HOME "/home/arnie/.local/share/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
@@ -115,3 +114,5 @@ alias share-screen 'niri msg action set-dynamic-cast-monitor'
 cat ~/.cache/wal/sequences
 clear
 # source ~/.cache/wal/colors-tty.sh
+
+fish_add_path /home/arnie/.spicetify
