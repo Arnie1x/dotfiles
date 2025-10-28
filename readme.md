@@ -21,6 +21,9 @@ Please note that these dotfiles are a work in progress—I'm constantly experime
 - Tmux (Terminal Multiplexer)
     - Tmux Configuration referenced from [this repository](https://github.com/gpakosz/.tmux)
 
+- Neovim (Text Editor)
+    - Neovim Configuration referenced from [NVChad](https://nvchad.com/)
+
 - Wlogout (Logout Menu)
 - Pywal (Dynamic theming based on wallpaper)
 - Swaync (Notification Center)

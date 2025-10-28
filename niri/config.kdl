@@ -110,7 +110,7 @@ output "eDP-1" {
 output "HP Inc. HP M27f FHD 3CM32205NZ" {
     mode "1920x1080@74.973"
     scale 1
-    position x=-1920 y=-600
+    position x=1366 y=-600
 }
 
 output "HP Inc. HP M27f FHD 3CM32206RY" {
@@ -208,7 +208,7 @@ layout {
         // You can use any CSS linear-gradient tool on the web to set these up.
         // Changing the color space is also supported, check the wiki for more info.
         //
-active-gradient from="#c7ebf4" to="#3DBBE9" angle=45 relative-to="workspace-view"
+active-gradient from="#a8e9f4" to="#32BFDD" angle=45 relative-to="workspace-view"
 
         // You can also color the gradient relative to the entire view
         // of the workspace, rather than relative to just the window itself.
@@ -299,7 +299,7 @@ spawn-at-startup "wal" "-R"
 // To make XWayland Work without needing to pass the env on every application
 environment {
     XDG_CURRENT_DESKTOP "niri"
-    DISPLAY ":2"
+    DISPLAY ":0"
     ELECTRON_OZONE_PLATFORM_HINT "wayland"
     XDG_SESISON_TYPE "wayland"
     QT_QPA_PLATFORM "wayland"
@@ -384,11 +384,11 @@ window-rule {
 
 window-rule {
     match is-active=false
-    opacity 0.9
+    opacity 0.875
 }
 
 window-rule {
-    match app-id="^code|code|Windsurf|gedit|sublime_text|beekeeper-studio|vesktop|obsidian|Spotify|thunar|io.github.alainm23.planify$"
+    match is-active=true app-id="^code|Code|Windsurf|windsurf|gedit|sublime_text|beekeeper-studio|vesktop|obsidian|Spotify|thunar|io.github.alainm23.planify$"
     opacity 0.95
     open-maximized true
 }
