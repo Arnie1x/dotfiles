@@ -47,3 +47,5 @@ Feel free to explore, reference, or adapt any part of this setup for your own us
 
 ![Screenshot 6](assets/screenshots/6.png)
 
+![Screenshot 7](assets/screenshots/7.png)
+

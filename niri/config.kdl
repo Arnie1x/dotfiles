@@ -208,7 +208,7 @@ layout {
         // You can use any CSS linear-gradient tool on the web to set these up.
         // Changing the color space is also supported, check the wiki for more info.
         //
-active-gradient from="#aeccdb" to="#4C6B9B" angle=45 relative-to="workspace-view"
+active-gradient from="#c0b8aa" to="#525E64" angle=45 relative-to="workspace-view"
 
         // You can also color the gradient relative to the entire view
         // of the workspace, rather than relative to just the window itself.
@@ -299,7 +299,7 @@ spawn-at-startup "wal" "-R"
 // To make XWayland Work without needing to pass the env on every application
 environment {
     XDG_CURRENT_DESKTOP "niri"
-    DISPLAY ":0"
+    DISPLAY ":2"
     ELECTRON_OZONE_PLATFORM_HINT "wayland"
     XDG_SESISON_TYPE "wayland"
     QT_QPA_PLATFORM "wayland"
