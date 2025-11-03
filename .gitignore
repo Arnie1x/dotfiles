@@ -1,2 +1,7 @@
 tmux.conf
+
+# MPD Scribble Config (Stores Account Info)
 */mpdscribble.conf
+
+# Spicetify config (Changes per device and should NOT be changed by the user)
+*/config-xpui.ini
