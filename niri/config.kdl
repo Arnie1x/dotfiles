@@ -118,9 +118,16 @@ output "HP Inc. HP M27f FHD 3CM32206RY" {
     scale 1
     position x=1366 y=-600
 }
+
 output "Samsung Electric Company SAMSUNG 0x01000E00" {
     // ...settings for HDMI-A-1...
     scale 2
+}
+
+output "HP Inc. HP E243i CNK8260580" {
+    mode "1920x1080@60.000"
+    scale 1
+    position x=1366 y=-600
 }
 
 // Settings that influence how windows are positioned and sized.
@@ -208,7 +215,7 @@ layout {
         // You can use any CSS linear-gradient tool on the web to set these up.
         // Changing the color space is also supported, check the wiki for more info.
         //
-active-gradient from="#c0b8aa" to="#525E64" angle=45 relative-to="workspace-view"
+active-gradient from="#a9bdd9" to="#4F84BC" angle=45 relative-to="workspace-view"
 
         // You can also color the gradient relative to the entire view
         // of the workspace, rather than relative to just the window itself.
@@ -295,11 +302,14 @@ spawn-at-startup "xwayland-satellite"
 spawn-at-startup "swaync"
 spawn-at-startup "bash" "-c" "~/.config/swww/wallpaper-randomizer.sh"
 spawn-at-startup "wal" "-R"
+spawn-at-startup "mega-cmd"
+spawn-at-startup "bash" "-c" "~/.config/mpd/mpd.sh"
+
 
 // To make XWayland Work without needing to pass the env on every application
 environment {
     XDG_CURRENT_DESKTOP "niri"
-    DISPLAY ":2"
+    DISPLAY ":0"
     ELECTRON_OZONE_PLATFORM_HINT "wayland"
     XDG_SESISON_TYPE "wayland"
     QT_QPA_PLATFORM "wayland"

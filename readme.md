@@ -27,6 +27,10 @@ Please note that these dotfiles are a work in progress—I'm constantly experime
 - Wlogout (Logout Menu)
 - Pywal (Dynamic theming based on wallpaper)
 - Swaync (Notification Center)
+- mpd (Music Player Daemon)
+    - mpdscribble (Scrobbler for mpd)
+    - mpd-notification (Desktop notifications for mpd)
+    - rmpc (TUI client for mpd)
 
 ---
 
@@ -48,4 +52,6 @@ Feel free to explore, reference, or adapt any part of this setup for your own us
 ![Screenshot 6](assets/screenshots/6.png)
 
 ![Screenshot 7](assets/screenshots/7.png)
+
+![Screenshot 8](assets/screenshots/8.png)
 
