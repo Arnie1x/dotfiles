@@ -10,7 +10,7 @@ start() {
     echo "Starting mpd and related apps..."
     if ! pgrep -x mpd >/dev/null; then
         setsid mpd >/dev/null 2>&1 || mpd >/dev/null 2>&1 &
-        sleep 0.2
+        sleep 2
     fi
 
     if command -v mpdscribble >/dev/null; then

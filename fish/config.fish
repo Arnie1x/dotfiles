@@ -78,6 +78,9 @@ alias mirrors 'sudo reflector --latest 50 --number 20 --protocol https --sort sc
 # fastfetch
 alias ff 'fastfetch'
 
+# spotify_player
+alias spot 'spotify_player'
+
 # Brightnessctl aliases
 alias b 'brightnessctl'
 alias bup 'brightnessctl set +10%'

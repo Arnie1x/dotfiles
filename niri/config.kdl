@@ -174,7 +174,7 @@ layout {
      }
 
     // You can change the default width of the new windows.
-    default-column-width { proportion 0.5; }
+    default-column-width { proportion 0.75; }
     // If you leave the brackets empty, the windows themselves will decide their initial width.
     // default-column-width {}
 
@@ -215,7 +215,7 @@ layout {
         // You can use any CSS linear-gradient tool on the web to set these up.
         // Changing the color space is also supported, check the wiki for more info.
         //
-active-gradient from="#a9bdd9" to="#4F84BC" angle=45 relative-to="workspace-view"
+active-gradient from="#a8e9f4" to="#32BFDD" angle=45 relative-to="workspace-view"
 
         // You can also color the gradient relative to the entire view
         // of the workspace, rather than relative to just the window itself.
@@ -309,7 +309,6 @@ spawn-at-startup "bash" "-c" "~/.config/mpd/mpd.sh"
 // To make XWayland Work without needing to pass the env on every application
 environment {
     XDG_CURRENT_DESKTOP "niri"
-    DISPLAY ":0"
     ELECTRON_OZONE_PLATFORM_HINT "wayland"
     XDG_SESISON_TYPE "wayland"
     QT_QPA_PLATFORM "wayland"
@@ -505,6 +504,9 @@ binds {
 
     // Color Picker
     Mod+Shift+C { spawn "bash" "-c" "~/.config/waybar/scripts/colorpicker.sh"; }
+
+    // swaync notification panel toggle
+    Super+N { spawn "bash" "-c" "swaync-client -t"; }
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     // You can also move the mouse into the top-left hot corner,
