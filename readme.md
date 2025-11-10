@@ -10,26 +10,29 @@ Please note that these dotfiles are a work in progress—I'm constantly experime
 
 - Fish (Shell)
 - Kitty (Terminal Emulator)
-- Fuzzel (App launcher and fuzzy finder)
 - Niri (Window Manager)
-- Swww (Wallpaper Manager)
+- Swww (Wallpaper handler)
 - Waybar (Status Bar)
 - Superfile (File Manager)
 - Hyprlock (Screen Locker)
+    - Hyprlock Example Configurations from [mahaveergurjar](https://github.com/mahaveergurjar/Hyprlock-Dots)
 - Hyprpicker (Color Picker Tool)
-- Auto CpuFreq (CPU Frequency Scaling)
+- Auto CpuFreq (CPU Frequency Scaler)
 - Tmux (Terminal Multiplexer)
-    - Tmux Configuration referenced from [this repository](https://github.com/gpakosz/.tmux)
+    - Tmux Configuration referenced from [gpakosz](https://github.com/gpakosz/.tmux)
 
 - Neovim (Text Editor)
     - Neovim Configuration referenced from [NVChad](https://nvchad.com/)
 
-- Wlogout (Logout Menu)
+- Rofi (A window switcher, application launcher and dmenu replacement )
+    - Rofi Configuration referenced from [adi1090x](https://github.com/adi1090x/rofi/tree/master)
+
 - Pywal (Dynamic theming based on wallpaper)
 - Swaync (Notification Center)
 - mpd (Music Player Daemon)
     - mpdscribble (Scrobbler for mpd)
     - mpd-notification (Desktop notifications for mpd)
+    - mpd-mpris (MPRIS interface for mpd)
     - rmpc (TUI client for mpd)
 
 ---
