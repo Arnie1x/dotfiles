@@ -67,6 +67,9 @@ run_cmd() {
 		elif [[ $1 == '--reboot' ]]; then
 			systemctl reboot
 		elif [[ $1 == '--suspend' ]]; then
+			if [[ -x '/usr/bin/hyprlock' ]]; then
+				~/.config/hypr/hyprlock.sh
+			fi
 			mpc -q pause
 			amixer set Master mute
 			systemctl suspend
@@ -103,7 +106,7 @@ case ${chosen} in
 		elif [[ -x '/usr/bin/i3lock' ]]; then
 			i3lock
 		elif [[ -x '/usr/bin/hyprlock' ]]; then
-			hyprlock
+			~/.config/hypr/hyprlock.sh
 		fi
         ;;
     $suspend)

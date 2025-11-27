@@ -300,7 +300,7 @@ active-gradient from="#adc8ee" to="#6754E2" angle=45 relative-to="workspace-view
 spawn-at-startup "waybar"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "swaync"
-spawn-at-startup "bash" "-c" "~/.config/swww/wallpaper-randomizer.sh"
+spawn-at-startup "swww-daemon"
 spawn-at-startup "wal" "-R"
 spawn-at-startup "mega-cmd"
 spawn-at-startup "bash" "-c" "~/.config/mpd/mpd.sh"

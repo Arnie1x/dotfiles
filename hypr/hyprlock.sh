@@ -13,11 +13,12 @@ CONF="$HOME/.config/hypr/hyprlock.conf"
 WALLPAPER_DIR="$HOME/Pictures/Wallpapers"
 # ────────────────────────────────────────────────────────────────────────────
 
-# 1) read the current wallpaper path
-current=$(sed -nE 's/^[[:space:]]*path[[:space:]]*=[[:space:]]*(.*)/\1/p' "$CONF")
+# 1) read the current wallpaper value from the $wall assignment in the config
+#    handles quoted or unquoted values
+current=$(sed -nE 's/^[[:space:]]*\$wall[[:space:]]*=[[:space:]]*"?([^"]+)"?/\1/p' "$CONF")
 
 if [[ -z "$current" ]]; then
-  echo "❌ Could not find 'path = ...' in $CONF" >&2
+  echo "❌ Could not find '\$wall = ...' in $CONF" >&2
   exit 1
 fi
 
@@ -39,11 +40,16 @@ fi
 # 4) pick a random one
 new_wallpaper=$(printf '%s\n' "${candidates[@]}" | shuf -n1)
 
-# 5) in-place replace the old path line with the new one
-#    using | as delimiter to avoid conflicts with /
-sed -i -E "s|^[[:space:]]*path[[:space:]]*=.*|    path = $new_wallpaper|" "$CONF"
+# 5) replace the $wall assignment in the config (preserve literal "$wall = ")
+awk -v nw="$new_wallpaper" '
+  /^[[:space:]]*\$wall[[:space:]]*=/ {
+    print "$wall = " nw
+    next
+  }
+  { print }
+' "$CONF" > "$CONF.tmp" && mv "$CONF.tmp" "$CONF"
 
-echo "🔄 Updated wallpaper:"
+echo "🔄 Updated wallpaper constant in $CONF:"
 echo "   old: $current"
 echo "   new: $new_wallpaper"
 echo "   Locking Screen now..."
