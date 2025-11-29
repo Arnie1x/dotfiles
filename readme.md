@@ -35,6 +35,8 @@ Please note that these dotfiles are a work in progress—I'm constantly experime
     - mpd-mpris (MPRIS interface for mpd)
     - rmpc (TUI client for mpd)
 
+- spotify-player (Spotify terminal client)
+
 ---
 
 Feel free to explore, reference, or adapt any part of this setup for your own use!
