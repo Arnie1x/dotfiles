@@ -1,99 +1,152 @@
 #!/bin/bash
 
 if [ $# -eq 0 ]; then
-	echo "Usage: $0 --title | --arturl | --artist | --length | --album | --source"
-	exit 1
+    echo "Usage: $0 --title | --arturl | --artist | --length | --album | --status | --source"
+    exit 1
 fi
 
-# Function to get metadata using playerctl
+# Get list of active players and choose one by priority
+get_preferred_player() {
+    players_raw=$(playerctl -l 2>/dev/null)
+    # remove empty lines
+    players=$(printf "%s" "$players_raw" | sed '/^\s*$/d')
+
+    if [ -z "$players" ]; then
+        # no players available
+        echo ""
+        return
+    fi
+
+    # read into array
+    IFS=$'\n' read -r -d '' -a player_arr <<< "${players}" || true
+
+    # priority patterns (first match wins)
+    priority=("spotify" "spotify_player")
+
+    for pat in "${priority[@]}"; do
+        for p in "${player_arr[@]}"; do
+            if [[ "$p" == *"$pat"* ]]; then
+                echo "$p"
+                return
+            fi
+        done
+    done
+
+    # fallback to first player in list
+    echo "${player_arr[0]}"
+}
+
+# selected player (may be empty)
+PLAYER=$(get_preferred_player)
+
+# helper to query metadata for the selected player
 get_metadata() {
-	key=$1
-	playerctl metadata --format "{{ $key }}" 2>/dev/null
+    key=$1
+    if [ -z "$PLAYER" ]; then
+        echo ""
+        return
+    fi
+    playerctl -p "$PLAYER" metadata --format "{{ $key }}" 2>/dev/null
 }
 
-# Check for arguments
+get_status() {
+    if [ -z "$PLAYER" ]; then
+        echo ""
+        return
+    fi
+    playerctl -p "$PLAYER" status 2>/dev/null
+}
 
-# Function to determine the source and return an icon and text
 get_source_info() {
-	trackid=$(get_metadata "mpris:trackid")
-	if [[ "$trackid" == *"firefox"* ]]; then
-		echo -e "Firefox 󰈹"
-	elif [[ "$trackid" == *"spotify"* ]]; then
-		echo -e "Spotify "
-	elif [[ "$trackid" == *"chromium"* ]]; then
-		echo -e "Chrome "
-	else
-		echo ""
-	fi
+    trackid=$(get_metadata "mpris:trackid")
+    # prefer trackid clues, fallback to PLAYER name
+    lookup="$trackid"
+    if [ -z "$lookup" ]; then
+        lookup="$PLAYER"
+    fi
+
+    if [[ "$lookup" == *"firefox"* ]]; then
+        echo -e "Firefox 󰈹"
+    elif [[ "$lookup" == *"spotify"* ]]; then
+        echo -e "Spotify "
+    elif [[ "$lookup" == *"chromium"* || "$lookup" == *"chrome"* ]]; then
+        echo -e "Chrome "
+    else
+        echo ""
+    fi
 }
 
-# Parse the argument
 case "$1" in
 --title)
-	title=$(get_metadata "xesam:title")
-	if [ -z "$title" ]; then
-		echo ""
-	else
-		echo "${title:0:28}" # Limit the output to 50 characters
-	fi
-	;;
+    title=$(get_metadata "xesam:title")
+    if [ -z "$title" ]; then
+        echo ""
+    else
+        echo "${title:0:40}"
+    fi
+    ;;
 --arturl)
-	url=$(get_metadata "mpris:artUrl")
-	if [ -z "$url" ]; then
-		echo ""
-	else
-		if [[ "$url" == file://* ]]; then
-			url=${url#file://}
-		fi
-		echo "$url"
-	fi
-	;;
+    url=$(get_metadata "mpris:artUrl")
+    if [ -z "$url" ]; then
+        echo ""
+    else
+        if [[ "$url" == file://* ]]; then
+            url=${url#file://}
+        fi
+        echo "$url"
+    fi
+    ;;
 --artist)
-	artist=$(get_metadata "xesam:artist")
-	if [ -z "$artist" ]; then
-		echo ""
-	else
-		echo "${artist:0:30}" # Limit the output to 50 characters
-	fi
-	;;
+    artist=$(get_metadata "xesam:artist")
+    if [ -z "$artist" ]; then
+        echo ""
+    else
+        echo "${artist:0:30}"
+    fi
+    ;;
 --length)
-	length=$(get_metadata "mpris:length")
-	if [ -z "$length" ]; then
-		echo ""
-	else
-		# Convert length from microseconds to a more readable format (seconds)
-		echo "$(echo "scale=2; $length / 1000000 / 60" | bc) m"
-	fi
-	;;
+    length=$(get_metadata "mpris:length")
+    if [ -z "$length" ]; then
+        echo ""
+    else
+        # length is in microseconds; convert to minutes with 2 decimal places
+        # guard against non-numeric
+        if [[ "$length" =~ ^[0-9]+$ ]]; then
+            echo "$(echo "scale=2; $length / 1000000 / 60" | bc) m"
+        else
+            echo ""
+        fi
+    fi
+    ;;
 --status)
-	status=$(playerctl status 2>/dev/null)
-	if [[ $status == "Playing" ]]; then
-		echo "󰎆"
-	elif [[ $status == "Paused" ]]; then
-		echo "󱑽"
-	else
-		echo ""
-	fi
-	;;
+    status=$(get_status)
+    if [[ $status == "Playing" ]]; then
+        echo "󰎆"
+    elif [[ $status == "Paused" ]]; then
+        echo "󱑽"
+    else
+        echo ""
+    fi
+    ;;
 --album)
-	album=$(playerctl metadata --format "{{ xesam:album }}" 2>/dev/null)
-	if [[ -n $album ]]; then
-		echo "$album"
-	else
-		status=$(playerctl status 2>/dev/null)
-		if [[ -n $status ]]; then
-			echo "Not album"
-		else
-			echo ""
-		fi
-	fi
-	;;
+    album=$(get_metadata "xesam:album")
+    if [[ -n $album ]]; then
+        echo "$album"
+    else
+        status=$(get_status)
+        if [[ -n $status ]]; then
+            echo "Not album"
+        else
+            echo ""
+        fi
+    fi
+    ;;
 --source)
-	get_source_info
-	;;
+    get_source_info
+    ;;
 *)
-	echo "Invalid option: $1"
-	echo "Usage: $0 --title | --url | --artist | --length | --album | --source"
-	exit 1
-	;;
+    echo "Invalid option: $1"
+    echo "Usage: $0 --title | --arturl | --artist | --length | --album | --status | --source"
+    exit 1
+    ;;
 esac

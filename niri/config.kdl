@@ -215,7 +215,7 @@ layout {
         // You can use any CSS linear-gradient tool on the web to set these up.
         // Changing the color space is also supported, check the wiki for more info.
         //
-active-gradient from="#adc8ee" to="#6754E2" angle=45 relative-to="workspace-view"
+active-gradient from="#d0cee0" to="#8C729D" angle=45 relative-to="workspace-view"
 
         // You can also color the gradient relative to the entire view
         // of the workspace, rather than relative to just the window itself.
@@ -397,7 +397,14 @@ window-rule {
 }
 
 window-rule {
-    match is-active=true app-id="^code|Code|Windsurf|windsurf|gedit|sublime_text|beekeeper-studio|vesktop|obsidian|Spotify|thunar|io.github.alainm23.planify$"
+    match app-id="code"
+    match app-id="Windsurf"
+    match app-id="windsurf"
+    match app-id="beekeeper-studio"
+    match app-id="vesktop"
+    match app-id="obsidian"
+    match app-id="Spotify"
+    match app-id="io.github.alainm23.planify"
     opacity 0.95
     open-maximized true
 }
@@ -443,7 +450,7 @@ window-rule {
     opacity 1.0
 }
 window-rule {
-    match app-id="^zen|firefox$" title="^Extension:|Developer$"
+    match app-id="^zen$" title="^Extension:$"
     open-floating true
     open-maximized false
 }
