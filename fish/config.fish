@@ -104,6 +104,9 @@ set -gx FLUTTER_HOME "/opt/flutter"
 set -gx PATH $PATH $FLUTTER_HOME/bin
 set -gx CHROME_EXECUTABLE "/usr/bin/google-chrome-stable"
 
+# Dart
+set -gx PATH $PATH $HOME/.pub-cache/bin
+
 # SWWW
 set -gx SWWW_TRANSITION_BEZIER ".54,0,.12,.98"
 

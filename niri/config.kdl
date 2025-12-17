@@ -119,6 +119,12 @@ output "HP Inc. HP M27f FHD 3CM32206RY" {
     position x=1366 y=-600
 }
 
+output "PNP(XXX) Beyond TV 0x00010000" {
+    // ...settings for HDMI-A-1...
+    scale 2
+    position x=1366 y=-600
+}
+
 output "Samsung Electric Company SAMSUNG 0x01000E00" {
     // ...settings for HDMI-A-1...
     scale 2
@@ -215,7 +221,7 @@ layout {
         // You can use any CSS linear-gradient tool on the web to set these up.
         // Changing the color space is also supported, check the wiki for more info.
         //
-active-gradient from="#f5e5c8" to="#FCD562" angle=45 relative-to="workspace-view"
+active-gradient from="#a0b3bb" to="#986A54" angle=45 relative-to="workspace-view"
 
         // You can also color the gradient relative to the entire view
         // of the workspace, rather than relative to just the window itself.
@@ -397,8 +403,8 @@ window-rule {
 }
 
 window-rule {
-    match is-active=true app-id="code"
-    match is-active=true app-id="windsurf"
+    match is-active=true app-id="Code"
+    match is-active=true app-id="Windsurf"
     match is-active=true app-id="beekeeper-studio"
     match is-active=true app-id="vesktop"
     match is-active=true app-id="obsidian"
