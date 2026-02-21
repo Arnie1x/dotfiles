@@ -54,6 +54,13 @@ input {
         // scroll-button 273
         // middle-emulation
     }
+    tablet {
+        // off
+        map-to-output "DP-1"
+        // left-handed
+        // calibration-matrix 1.0 0.0 0.0 0.0 1.0 0.0
+    }
+
 
     // Uncomment this to make the mouse warp to the center of newly focused windows.
     warp-mouse-to-focus
@@ -221,7 +228,7 @@ layout {
         // You can use any CSS linear-gradient tool on the web to set these up.
         // Changing the color space is also supported, check the wiki for more info.
         //
-active-gradient from="#a0b3bb" to="#986A54" angle=45 relative-to="workspace-view"
+active-gradient from="#c0b8aa" to="#525E64" angle=45 relative-to="workspace-view"
 
         // You can also color the gradient relative to the entire view
         // of the workspace, rather than relative to just the window itself.
@@ -408,7 +415,7 @@ window-rule {
     match is-active=true app-id="beekeeper-studio"
     match is-active=true app-id="vesktop"
     match is-active=true app-id="obsidian"
-    match is-active=true app-id="Spotify"
+    match is-active=true app-id="spotify"
     match is-active=true app-id="io.github.alainm23.planify"
     opacity 0.95
     open-maximized true
