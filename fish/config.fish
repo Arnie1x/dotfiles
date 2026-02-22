@@ -122,3 +122,7 @@ clear
 # source ~/.cache/wal/colors-tty.sh
 
 fish_add_path /home/arnie/.spicetify
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH

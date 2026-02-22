@@ -228,7 +228,7 @@ layout {
         // You can use any CSS linear-gradient tool on the web to set these up.
         // Changing the color space is also supported, check the wiki for more info.
         //
-active-gradient from="#c0b8aa" to="#525E64" angle=45 relative-to="workspace-view"
+active-gradient from="#cdabba" to="#654262" angle=45 relative-to="workspace-view"
 
         // You can also color the gradient relative to the entire view
         // of the workspace, rather than relative to just the window itself.
@@ -410,7 +410,8 @@ window-rule {
 }
 
 window-rule {
-    match is-active=true app-id="Code"
+    match is-active=true app-id="Code|code"
+    match is-active=true app-id="antigravity|Antigravity"
     match is-active=true app-id="Windsurf"
     match is-active=true app-id="beekeeper-studio"
     match is-active=true app-id="vesktop"
