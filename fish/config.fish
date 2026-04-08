@@ -132,8 +132,8 @@ alias clock 'clock-rs'
 alias share-screen 'niri msg action set-dynamic-cast-monitor'
 
 # PyWal
-cat ~/.cache/wal/sequences
-clear
+# cat ~/.cache/wal/sequences
+# clear
 # source ~/.cache/wal/colors-tty.sh
 
 fish_add_path /home/arnie/.spicetify
