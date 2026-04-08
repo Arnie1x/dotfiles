@@ -19,9 +19,9 @@ set -xU MANPAGER "sh -c 'col -bx | bat -l man -p'"
 set -xU MANROFFOPT "-c"
 
 ## Export variable need for qt-theme
-if type "qtile" >> /dev/null 2>&1
-   set -x QT_QPA_PLATFORMTHEME "qt5ct"
-end
+# if type "qtile" >> /dev/null 2>&1
+#    set -x QT_QPA_PLATFORMTHEME "qt6ct"
+# end
 
 # Add ~/.local/bin to PATH
 if test -d ~/.local/bin
@@ -86,6 +86,21 @@ alias b 'brightnessctl'
 alias bup 'brightnessctl set +10%'
 alias bdown 'brightnessctl set 10%-'
 
+# npm and pnpm
+alias nrd 'npm run dev'
+alias nrb 'npm run build'
+alias nrt 'npm run test'
+alias nrs 'npm run start'
+alias nrl 'npm run lint'
+alias nrf 'npm run format'
+
+alias prd 'pnpm run dev'
+alias prb 'pnpm run build'
+alias prt 'pnpm run test'
+alias prs 'pnpm run start'
+alias prl 'pnpm run lint'
+alias prf 'pnpm run format'
+
 # pnpm
 alias pn pnpm
 set -gx PNPM_HOME "/home/arnie/.local/share/pnpm"
@@ -126,3 +141,7 @@ fish_add_path /home/arnie/.spicetify
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
+
+# Zoxide
+zoxide init fish | source
+alias cd 'z'

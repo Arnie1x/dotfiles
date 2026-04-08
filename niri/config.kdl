@@ -217,6 +217,12 @@ layer-rule {
     match namespace="^quickshell$"
     place-within-backdrop true
 }
+// Block out sensitive components from screencasts
+layer-rule {
+    match namespace="^dms:clipboard$"
+
+    block-out-from "screencast"
+}
 overview {
     zoom 0.35
     workspace-shadow {
@@ -227,9 +233,22 @@ overview {
 // Note that running niri as a session supports xdg-desktop-autostart,
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
-// This line starts waybar, a commonly used bar for Wayland compositors.
+
+spawn-at-startup "dms" "run"
+// Optional: Clipboard history
+spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store &"
+
+spawn-at-startup "bash" "-c" "~/.config/mpd/mpd.sh"
+
 environment {
-  XDG_CURRENT_DESKTOP "niri"
+    XDG_CURRENT_DESKTOP "niri"
+    ELECTRON_OZONE_PLATFORM_HINT "wayland"
+    XDG_SESSION_TYPE "wayland"
+    QT_QPA_PLATFORM "wayland"
+    MOZ_ENABLE_WAYLAND "1"
+    QT_WAYLAND_DISABLE_DECORATION "1"
+    QT_QPA_PLATFORMTHEME "gtk3"
+    QT_QPA_PLATFORMTHEME_QT6 "gtk3"
 }
 hotkey-overlay {
     skip-at-startup
@@ -332,6 +351,74 @@ debug {
     honor-xdg-activation-with-invalid-serial
 }
 
+window-rule {
+    match is-active=true app-id="Code|code"
+    match is-active=true app-id="antigravity|Antigravity"
+    match is-active=true app-id="Windsurf"
+    match is-active=true app-id="beekeeper-studio"
+    match is-active=true app-id="vesktop"
+    match is-active=true app-id="obsidian"
+    match is-active=true app-id="spotify"
+    match is-active=true app-id=r#"^io\.github\.alainm23$"#
+    opacity 0.975
+    open-maximized true
+}
+
+// Kitty Shadows to counter the faint greed background from dank32
+window-rule {
+    match app-id="^kitty$"
+    shadow {
+        // Shadows to make text more legible with Transparent Zen extensions (alternative for blur in Hyprland)
+        on
+        draw-behind-window true
+        softness 30
+
+        // Spread expands the shadow.
+        spread 5
+
+        // Offset moves the shadow relative to the window.
+        offset x=2 y=2
+
+        // You can also change the shadow color and opacity.
+        color "#000000AF"
+    }
+}
+
+// Zen Browser & Firefox
+window-rule {
+    match app-id="^zen$"
+    open-maximized true
+    shadow {
+        // Shadows to make text more legible with Transparent Zen extensions (alternative for blur in Hyprland)
+        on
+        draw-behind-window true
+        softness 30
+
+        // Spread expands the shadow.
+        spread 5
+
+        // Offset moves the shadow relative to the window.
+        offset x=2 y=2
+
+        // You can also change the shadow color and opacity.
+        color "#00000070"
+    }
+}
+window-rule {
+    match app-id="^zen|firefox$" title="^Picture-in-Picture$"
+    open-floating true
+    default-floating-position x=8 y=8 relative-to="bottom-right"
+}
+window-rule {
+    match app-id="^zen|firefox$" title="^Picture-in-Picture$" is-active=false
+    opacity 1.0
+}
+window-rule {
+    match app-id="^zen$" title="^Extension$"
+    open-floating true
+    open-maximized false
+}
+
 // Override to disable super+tab
 recent-windows {
     binds {
@@ -341,6 +428,28 @@ recent-windows {
         Alt+Shift+grave { previous-window filter="app-id"; }
     }
 }
+
+workspace "scratchpad" {
+    open-on-output "eDP-1"
+    layout {
+        gaps 32
+
+        struts {
+            left 32
+            right 32
+            bottom 32
+            top 32
+        }
+
+        border {
+            off
+            width 4
+        }
+
+        // ...any other setting.
+    }
+}
+
 
 // Include dms files
 include "dms/colors.kdl"
