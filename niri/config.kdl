@@ -47,7 +47,7 @@ output "eDP-1" {
 output "HP Inc. HP M27f FHD 3CM32205NZ" {
     mode "1920x1080@74.973"
     scale 1
-    position x=1366 y=-600
+    position x=1920 y=-600
 }
 
 output "HP Inc. HP M27f FHD 3CM32206RY" {
@@ -237,7 +237,7 @@ overview {
 spawn-at-startup "dms" "run"
 // Optional: Clipboard history
 spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store &"
-
+spawn-at-startup "mega-cmd &"
 spawn-at-startup "bash" "-c" "~/.config/mpd/mpd.sh"
 
 environment {
@@ -354,13 +354,13 @@ debug {
 window-rule {
     match is-active=true app-id="Code|code"
     match is-active=true app-id="antigravity|Antigravity"
-    match is-active=true app-id="Windsurf"
+    match is-active=true app-id="Windsurf|windsurf"
     match is-active=true app-id="beekeeper-studio"
     match is-active=true app-id="vesktop"
     match is-active=true app-id="obsidian"
-    match is-active=true app-id="spotify"
-    match is-active=true app-id=r#"^io\.github\.alainm23$"#
-    opacity 0.975
+    match is-active=true app-id="spotify|Spotify"
+    match is-active=true app-id=r#"^io\.github\.alainm23\.planify$"#
+    opacity 0.95
     open-maximized true
 }
 

@@ -4,7 +4,7 @@ if status is-interactive
     starship init fish | source
 
     # Pyenv Init
-    pyenv init - fish | source
+    # pyenv init - fish | source
 
     # fuck
     thefuck --alias | source
