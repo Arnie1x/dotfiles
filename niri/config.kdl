@@ -170,9 +170,9 @@ layout {
         // Proportion sets the width as a fraction of the output width, taking gaps into account.
         // For example, you can perfectly fit four windows sized "proportion 0.25" on an output.
         // The default preset widths are 1/3, 1/2 and 2/3 of the output.
-        proportion 0.25
-        proportion 0.5
         proportion 0.75
+        proportion 0.5
+        proportion 0.25
         // Fixed sets the width in logical pixels exactly.
         // fixed 1920
     }
@@ -352,19 +352,30 @@ debug {
 }
 
 window-rule {
-    match is-active=true app-id="Code|code"
-    match is-active=true app-id="antigravity|Antigravity"
-    match is-active=true app-id="Windsurf|windsurf"
-    match is-active=true app-id="beekeeper-studio"
-    match is-active=true app-id="vesktop"
-    match is-active=true app-id="obsidian"
-    match is-active=true app-id="spotify|Spotify"
-    match is-active=true app-id=r#"^io\.github\.alainm23\.planify$"#
-    opacity 0.95
+    match app-id=r#"^io\.github\.alainm23\.planify$"#
+    match app-id="Code|code"
+    match app-id="antigravity|Antigravity"
+    match app-id="Windsurf|windsurf"
+    match app-id="beekeeper-studio"
+    match app-id="vesktop"
+    match app-id="obsidian"
+    match app-id="spotify|Spotify"
     open-maximized true
+    opacity 0.95
 }
 
-// Kitty Shadows to counter the faint greed background from dank32
+window-rule {
+    match app-id="Code|code"
+    match app-id="antigravity|Antigravity"
+    match app-id="Windsurf|windsurf"
+    match app-id=r#"^io\.github\.alainm23\.planify$"#
+    opacity 0.9
+    background-effect {
+        blur true
+    }
+}
+
+// Kitty Shadows to counter the faint green background from dank32
 window-rule {
     match app-id="^kitty$"
     shadow {
@@ -380,7 +391,7 @@ window-rule {
         offset x=2 y=2
 
         // You can also change the shadow color and opacity.
-        color "#000000AF"
+        color "#00000055"
     }
 }
 
@@ -390,7 +401,7 @@ window-rule {
     open-maximized true
     shadow {
         // Shadows to make text more legible with Transparent Zen extensions (alternative for blur in Hyprland)
-        on
+        off
         draw-behind-window true
         softness 30
 
@@ -402,6 +413,9 @@ window-rule {
 
         // You can also change the shadow color and opacity.
         color "#00000070"
+    }
+    background-effect {
+        blur true
     }
 }
 window-rule {
