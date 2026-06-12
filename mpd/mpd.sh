@@ -3,6 +3,9 @@ set -euo pipefail
 
 MPDSCRIBBLE_CONF="${HOME}/.config/mpd/mpdscribble.conf"
 MUSIC_DIR="${HOME}/Music"
+MPD_SOCKET="${HOME}/.mpd/socket"
+MPD_HOST="unix:${MPD_SOCKET}"
+export MPD_HOST
 
 PROCS=(mpd mpdscribble mpd-notification mpd-mpris)
 
@@ -22,7 +25,7 @@ start() {
     fi
 
     if command -v mpd-mpris >/dev/null; then
-        setsid mpd-mpris >/dev/null 2>&1 &
+        setsid mpd-mpris -no-instance -network unix -host "$MPD_SOCKET" >/dev/null 2>&1 &
     fi
     echo "Started."
 }

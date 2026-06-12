@@ -1,5 +1,5 @@
 theme = "dracula"
-client_id = "c5bc193693844eae8def0acebd911e4c"
+client_id = "12ff5ea7783c469d9691954cf2ab9fdc"
 client_port = 8080
 login_redirect_uri = "http://127.0.0.1:8989/login"
 playback_format = """
@@ -49,7 +49,7 @@ album_percent = 40
 
 [device]
 name = "spotify-player"
-device_type = "speaker"
+device_type = "computer"
 volume = 100
 bitrate = 320
 audio_cache = true

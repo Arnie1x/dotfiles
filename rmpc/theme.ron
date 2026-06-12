@@ -1,0 +1,198 @@
+#![enable(implicit_some)]
+#![enable(unwrap_newtypes)]
+#![enable(unwrap_variant_newtypes)]
+
+(
+    layout: Split(
+        direction: Vertical,
+        panes: [
+            (
+                size: "16",
+                pane: Split(
+                    direction: Horizontal,
+                    panes: [
+                        (
+                            size: "32",
+                            pane: Pane(AlbumArt),
+                        ),
+                        (
+                            size: "2",
+                            pane: Pane(Empty()),
+                        ),
+                        (
+                            size: "100%",
+                            pane: Split(
+                                direction: Vertical,
+                                panes: [
+                                    (
+                                        size: "11",
+                                        borders: "ALL",
+                                        pane: Component("custom_header"),
+                                    ),
+                                    (
+                                        size: "1",
+                                        pane: Pane(Empty()),
+                                    ),
+                                    (
+                                        size: "1",
+                                        pane: Pane(ProgressBar),
+                                    ),
+                                    (
+                                        size: "1",
+                                        pane: Pane(Empty()),
+                                    ),
+                                    (
+                                        size: "1",
+                                        pane: Pane(Tabs),
+                                    ),
+                                ]
+                            )
+                        ),
+                    ]
+                ),
+            ),
+            (
+                size: "1",
+                pane: Pane(Empty()),
+            ),
+            (
+                size: "5",
+                pane: Pane(Cava),
+            ),
+            (
+                size: "1",
+                pane: Pane(Empty()),
+            ),
+            (
+                size: "100%",
+                pane: Pane(TabContent),
+            ),
+        ],
+    ),
+    components: {
+        "custom_header": Split(
+            direction: Vertical,
+            panes: [
+                (
+                    size: "2",
+                    pane: Pane(Property(
+                        content: [
+                            (kind: Property(Song(Title)), style: (modifiers: "Bold"), default: (kind: Text("No Song"), style: (modifiers: "Bold"))),
+                        ],
+                        align: Left,
+                    )),
+                ),
+                (
+                    size: "1",
+                    pane: Pane(Property(
+                        content: [
+                            (kind: Property(Song(Artist)), style: (fg: "yellow"), default: (kind: Text("Unknown Artist"))),
+                            (kind: Text(" - ")),
+                            (kind: Property(Song(Album)), default: (kind: Text("Unknown Album"))),
+                        ],
+                        align: Left,
+                    )),
+                ),
+                (
+                    size: "1",
+                    pane: Pane(Empty()),
+                ),
+                (
+                    size: "1",
+                    pane: Pane(Property(
+                        content: [
+                            (kind: Property(Status(Elapsed))),
+                            (kind: Text(" / ")),
+                            (kind: Property(Status(Duration))),
+                            (kind: Text("  |  ")),
+                            (kind: Property(Status(Bitrate))),
+                            (kind: Text(" kbps")),
+                        ],
+                        align: Left,
+                    )),
+                ),
+                (
+                    size: "1",
+                    pane: Split(
+                        direction: Horizontal,
+                        panes: [
+                            (size: "5", pane: Pane(Property(content: [(kind: Text("Vol: "))]))),
+                            (size: "90%", pane: Pane(Volume(kind: Slider(symbols: (filled: "─", thumb: "●", track: "─"))))),
+                            (size: "1", pane: Pane(Empty())),
+                            (size: "3", pane: Pane(Property(content: [(kind: Property(Status(Volume)), style: (fg: "blue"))], align: Left))),
+                            (size: "2", pane: Pane(Property(content: [(kind: Text("%"), style: (fg: "blue"))]))),
+                        ]
+                    ),
+                ),
+                (
+                    size: "2",
+                    pane: Pane(Property(
+                        content: [
+                            (kind: Text("Queue: ")),
+                            (kind: Property(Status(QueueLength()))),
+                            (kind: Text(" songs / ")),
+                            (kind: Property(Status(QueueTimeTotal()))),
+                        ],
+                        align: Left,
+                    )),
+                ),
+                (
+                    size: "2",
+                    pane: Pane(Property(
+                        content: [
+                            (kind: Text("["), style: (fg: "blue", modifiers: "Bold")),
+                            (kind: Text("Repeat: "), style: (fg: "blue", modifiers: "Dim")),
+                            (kind: Property(Status(RepeatV2(
+                                on_label: "z",
+                                off_label: "z",
+                                on_style: (fg: "yellow", modifiers: "Bold"),
+                                off_style: (fg: "blue", modifiers: "Dim"),
+                            )))),
+                            (kind: Text("  ")),
+                            (kind: Text("Random: "), style: (fg: "blue", modifiers: "Dim")),
+                            (kind: Property(Status(RandomV2(
+                                on_label: "x",
+                                off_label: "x",
+                                on_style: (fg: "yellow", modifiers: "Bold"),
+                                off_style: (fg: "blue", modifiers: "Dim"),
+                            )))),
+                            (kind: Text("  ")),
+                            (kind: Text("Consume: "), style: (fg: "blue", modifiers: "Dim")),
+                            (kind: Property(Status(ConsumeV2(
+                                on_label: "c",
+                                off_label: "c",
+                                oneshot_label: "c",
+                                on_style: (fg: "yellow", modifiers: "Bold"),
+                                off_style: (fg: "blue", modifiers: "Dim"),
+                                oneshot_style: (fg: "red", modifiers: "Dim"),
+                            )))),
+                            (kind: Text("  ")),
+                            (kind: Text("Single: "), style: (fg: "blue", modifiers: "Dim")),
+                            (kind: Property(Status(SingleV2(
+                                on_label: "v",
+                                off_label: "v",
+                                oneshot_label: "v",
+                                on_style: (fg: "yellow", modifiers: "Bold"),
+                                off_style: (fg: "blue", modifiers: "Dim"),
+                                oneshot_style: (fg: "red", modifiers: "Bold"),
+                            )))),
+                            (kind: Text("]"), style: (fg: "blue", modifiers: "Bold")),
+                        ],
+                        align: Left,
+                    )),
+                ),
+                (
+                    size: "1",
+                    pane: Pane(Empty()),
+                ),
+            ],
+        ),
+    },
+    cava: (
+        bar_symbols: ['▁', '▂', '▃', '▄', '▅', '▆', '▇', '█'],
+        orientation: Bottom,
+        bar_color: Single("blue"),
+        bar_width: 1,
+        bar_spacing: 1,
+    ),
+)
