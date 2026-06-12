@@ -369,6 +369,7 @@ window-rule {
     match app-id="antigravity|Antigravity"
     match app-id="Windsurf|windsurf"
     match app-id=r#"^io\.github\.alainm23\.planify$"#
+    match app-id="beekeeper-studio"
     opacity 0.9
     background-effect {
         blur true

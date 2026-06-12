@@ -145,3 +145,7 @@ set --export PATH $BUN_INSTALL/bin $PATH
 # Zoxide
 zoxide init fish | source
 alias cd 'z'
+
+
+# Added by Antigravity CLI installer
+set -gx PATH "/home/arnie/.local/bin" $PATH
