@@ -6,7 +6,7 @@
   "matugenScheme": "scheme-vibrant",
   "runUserMatugenTemplates": true,
   "matugenTargetMonitor": "",
-  "popupTransparency": 0.9,
+  "popupTransparency": 0.5,
   "dockTransparency": 1,
   "widgetBackgroundColor": "sth",
   "widgetColorMode": "colorful",
@@ -58,8 +58,8 @@
   "selectedGpuIndex": 0,
   "enabledGpuPciIds": [],
   "showSystemTray": true,
-  "systemTrayIconTintMode": "none",
-  "systemTrayIconTintSaturation": 50,
+  "systemTrayIconTintMode": "primary",
+  "systemTrayIconTintSaturation": 100,
   "systemTrayIconTintStrength": 135,
   "showClock": true,
   "showNotificationButton": true,
@@ -230,7 +230,7 @@
   "notepadFontSize": 14,
   "notepadShowLineNumbers": false,
   "notepadTransparencyOverride": -1,
-  "notepadLastCustomTransparency": 0.7,
+  "notepadLastCustomTransparency": 0.79,
   "soundsEnabled": true,
   "useSystemSoundTheme": false,
   "soundNewNotification": true,
@@ -265,6 +265,7 @@
   "audioInputDevicePins": {},
   "audioOutputDevicePins": {
     "preferredOutput": [
+      "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__Headphones__sink",
       "alsa_output.usb-KTMicro_KT_USB_Audio_2021-07-19-0000-0000-0000--00.analog-stereo"
     ]
   },
@@ -281,11 +282,11 @@
   "matugenTemplateNiri": true,
   "matugenTemplateHyprland": false,
   "matugenTemplateMangowc": false,
-  "matugenTemplateQt5ct": false,
-  "matugenTemplateQt6ct": false,
+  "matugenTemplateQt5ct": true,
+  "matugenTemplateQt6ct": true,
   "matugenTemplateFirefox": false,
   "matugenTemplatePywalfox": false,
-  "matugenTemplateZenBrowser": false,
+  "matugenTemplateZenBrowser": true,
   "matugenTemplateVesktop": true,
   "matugenTemplateEquibop": false,
   "matugenTemplateGhostty": false,
@@ -361,7 +362,7 @@
   "notificationHistorySaveCritical": true,
   "notificationRules": [],
   "osdAlwaysShowValue": true,
-  "osdPosition": 5,
+  "osdPosition": 4,
   "osdVolumeEnabled": true,
   "osdMediaVolumeEnabled": true,
   "osdMediaPlaybackEnabled": true,
@@ -433,7 +434,10 @@
     "eDP-1": {
       "hotCorners": {
         "corners": [
-          "top-left"
+          "top-left",
+          "top-right",
+          "bottom-left",
+          "bottom-right"
         ]
       },
       "layout": {
@@ -443,12 +447,14 @@
     "HDMI-A-1": {
       "hotCorners": {
         "corners": [
-          "top-right"
+          "top-right",
+          "top-left"
         ]
       },
       "layout": {
         "alwaysCenterSingleColumn": true
-      }
+      },
+      "focusAtStartup": true
     }
   },
   "hyprlandOutputSettings": {},
@@ -462,7 +468,7 @@
       "id": "default",
       "name": "Main Bar",
       "enabled": true,
-      "position": 2,
+      "position": 0,
       "screenPreferences": [
         {
           "name": "eDP-1",
@@ -478,7 +484,8 @@
         },
         {
           "id": "music",
-          "enabled": true
+          "enabled": true,
+          "mediaSize": 2
         }
       ],
       "centerWidgets": [
@@ -490,8 +497,16 @@
       "rightWidgets": [
         "systemTray",
         "clipboard",
-        "cpuUsage",
-        "memUsage",
+        {
+          "id": "cpuUsage",
+          "enabled": true,
+          "minimumWidth": true
+        },
+        {
+          "id": "memUsage",
+          "enabled": true,
+          "showSwap": false
+        },
         "notificationButton",
         {
           "id": "controlCenterButton",
@@ -501,20 +516,21 @@
           "showBrightnessPercent": false,
           "showMicIcon": false,
           "showBatteryIcon": true,
-          "showPrinterIcon": false
+          "showPrinterIcon": false,
+          "showScreenSharingIcon": true
         }
       ],
-      "spacing": 2,
-      "innerPadding": -7,
+      "spacing": 6,
+      "innerPadding": -6,
       "bottomGap": 0,
-      "transparency": 0,
-      "widgetTransparency": 1,
+      "transparency": 0.25,
+      "widgetTransparency": 0,
       "squareCorners": false,
       "noBackground": false,
       "maximizeWidgetIcons": true,
       "maximizeWidgetText": false,
       "removeWidgetPadding": false,
-      "widgetPadding": 10,
+      "widgetPadding": 7,
       "gothCornersEnabled": false,
       "gothCornerRadiusOverride": false,
       "gothCornerRadiusValue": 12,
@@ -526,8 +542,8 @@
       "widgetOutlineColor": "primary",
       "widgetOutlineOpacity": 1,
       "widgetOutlineThickness": 1,
-      "fontScale": 0.9,
-      "iconScale": 0.85,
+      "fontScale": 1,
+      "iconScale": 0.9,
       "autoHide": false,
       "autoHideDelay": 250,
       "showOnWindowsOpen": true,
@@ -540,8 +556,8 @@
       "scrollXBehavior": "column",
       "scrollYBehavior": "workspace",
       "shadowIntensity": 0,
-      "shadowOpacity": 60,
-      "shadowColorMode": "text",
+      "shadowOpacity": 61,
+      "shadowColorMode": "secondary",
       "shadowCustomColor": "#000000",
       "clickThrough": false
     }

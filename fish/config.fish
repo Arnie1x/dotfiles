@@ -149,3 +149,6 @@ alias cd 'z'
 
 # Added by Antigravity CLI installer
 set -gx PATH "/home/arnie/.local/bin" $PATH
+
+# OpenChamber
+alias oc 'openchamber --port 3333'
