@@ -239,6 +239,7 @@ spawn-at-startup "dms" "run"
 spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store &"
 spawn-at-startup "mega-cmd &"
 spawn-at-startup "bash" "-c" "~/.config/mpd/mpd.sh"
+spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 
 environment {
     XDG_CURRENT_DESKTOP "niri"
@@ -396,25 +397,10 @@ window-rule {
     }
 }
 
-// Zen Browser & Firefox
+// Zen Browser
 window-rule {
     match app-id="^zen$"
     open-maximized true
-    shadow {
-        // Shadows to make text more legible with Transparent Zen extensions (alternative for blur in Hyprland)
-        off
-        draw-behind-window true
-        softness 30
-
-        // Spread expands the shadow.
-        spread 5
-
-        // Offset moves the shadow relative to the window.
-        offset x=2 y=2
-
-        // You can also change the shadow color and opacity.
-        color "#00000070"
-    }
     background-effect {
         blur true
     }
